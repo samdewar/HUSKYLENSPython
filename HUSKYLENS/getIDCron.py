@@ -6,7 +6,7 @@ import time
 import os
 from huskylib import HuskyLensLibrary
 hl = HuskyLensLibrary("I2C","", address=0x32)
-outputFile = open("output.txt", "a")#opens the output file on append mode
+outputFile = open("birds.csv", "a")#opens the output file on append mode
 rawData = json.dumps(hl.blocks().__dict__)#reads the id in view of camera
 attributes=rawData.split()#split the string into an array based on spaces
 # print(attributes[9])
