@@ -1,0 +1,2 @@
+* * * * * sudo python <INSERT ABSOLUTE FILEPATH TO getIDCron.py>
+*/30 * * * * sudo python <INSERT ABSOLUTE FILEPATH TO publish.py>
