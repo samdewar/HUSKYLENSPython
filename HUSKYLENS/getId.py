@@ -1,4 +1,5 @@
 #configuration info found at https://github.com/HuskyLens/HUSKYLENSPython/blob/master/Raspberry%20Pi%20Tutorial.md
+#THIS FILE IS DEFUNCT USE getIDCron.py
 import json
 from datetime import datetime
 import time
