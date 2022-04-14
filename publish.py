@@ -11,25 +11,25 @@ def on_message(client, userdata, msg):
         print(message)
     
 
-#logging
+#For loggin and maintinence 
 def on_log(client, userdata, level, buf):
     print("log: ",buf)
     
-
+#Open CSV file and read data to array
 def open_file(filename):
     try:
         file_CSV = open(filename)
         data_CSV = csv.reader(file_CSV)
         list_CSV = list(data_CSV)
         return list_CSV
-    except Exception as e:
+    except Exception as e: #Return error
         print("Error with file: ", e)
         return list_CSV 
 
 
-#check if there is a connection
+#check if there is a connection and publish data
 def on_connect(client, userdata, flags, rc):
-    if rc == 0:
+    if rc == 0: # 0 is correctly connected
         print("Connected")
         client.connected_flag=True
         try:
@@ -37,23 +37,23 @@ def on_connect(client, userdata, flags, rc):
             client.publish("birds/data", str_bird_array, qos=0, retain=True)
             time.sleep(7)
             print("Published")
-        except Exception as e:
+        except Exception as e: #Return Error in publishing
             print("Error Publishing Data: ", e)        
         client.disconnect()
-    else:
+    else: #Return Status code
         print("Error connection: ", rc)
         client.disconnect()
 
         
         
-
+#Create Client and run connection and publish scripts
 def connect_and_publish(broker, bird_array):
         mqtt.Client.connected_flag=False
         
         #Client(client_id="", clean_session=True, userdata=None, protocol=MQTTv311, transport="tcp")
-        client = mqtt.Client("lions_gate")
+        client = mqtt.Client("lions_gate") # Client
         
-        client.loop_start()
+        client.loop_start() # Client loop
         
         #Callback for displaying log data
         client.on_log=on_log
@@ -64,17 +64,18 @@ def connect_and_publish(broker, bird_array):
                 
         client.on_connect=on_connect #callback function
         
-        while client.connected_flag == False:
+        while client.connected_flag == False: #Wait for connection
             print("Waiting...")
             time.sleep(1)
         
-        #Callback for displaying data
+        #Callback for displaying data only used in subscription scripts
         client.on_message=on_message
     
         
-        client.loop_stop()
+        client.loop_stop() # Loop stop
 
-def main(csv_filename, broker):
+#main function - check if data then start connection script
+def main(csv_filename, broker): 
     #variables
     global str_bird_array
     
@@ -88,13 +89,12 @@ def main(csv_filename, broker):
         status = "Data has been published"
         return status
 	
-    
+#filename and broker domain    
 filename = "birds.csv"
 broker = "127.0.0.1"    
     
+#main call and status of scripts 
 status = main(filename, broker)
 print(status)
-
-
 
 
