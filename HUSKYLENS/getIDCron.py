@@ -11,10 +11,11 @@ outputFile = open("birds.csv", "a")#opens the output file on append mode
 
 rawData = json.dumps(hl.blocks().__dict__)#reads the id in view of camera
 attributes=rawData.split()#split the string into an array based on spaces
-outputFile.write("ID:"+attributes[9])#write the id (9 in the array)
+if(attributes[9]!="1,"):
+    outputFile.write("ID:"+attributes[9])#write the id (9 in the array)
 
-dateUnformatted=datetime.today()#gets todays date
-dateFormatted = dateUnformatted.strftime('%d/%m/%y %I:%M')#format date
-outputFile.write("Date:"+dateFormatted+"\n")#write formatted date on same line as id
+    dateUnformatted=datetime.today()#gets todays date
+    dateFormatted = dateUnformatted.strftime('%d/%m/%y %I:%M')#format date
+    outputFile.write("Date:"+dateFormatted+"\n")#write formatted date on same line as id
 
 outputFile.close()#close file
