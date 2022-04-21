@@ -30,7 +30,7 @@ while(true):
 
 import time
 import serial
-import png
+#import png
 import json
 
 
