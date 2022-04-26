@@ -25,9 +25,9 @@ Call function main()
 ```python
 status = main(filename, broker)
 ```
-filename is the name of the CSV file you wish to read data from
-broker is the MQTT broker IP or domain name
-status is a string variable that either returns confirmation or error message for usage
+filename is the name of the CSV file you wish to read data from  
+broker is the MQTT broker IP or domain name  
+status is a string variable that either returns confirmation or error message for usage  
 
 # Publish Process
 
