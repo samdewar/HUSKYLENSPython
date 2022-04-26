@@ -1,6 +1,7 @@
 # MQTT python
 
 Python files for publishing and subscribing to a Mosquitto MQTT broker 
+Variables may be named bird related items as that was the project it was initally for
 
 # Installation
 Packages Time, Paho and CSV must be installed to use this code
