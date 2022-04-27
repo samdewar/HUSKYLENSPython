@@ -181,7 +181,7 @@ def graph(counted_birds):
 	plt.show()
 
 ```
-#Contact
+# Contact
 Any questions please contact me at: paul.crichton@outlook.com
 
 Many Thanks,
