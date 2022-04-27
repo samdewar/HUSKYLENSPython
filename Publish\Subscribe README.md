@@ -170,7 +170,8 @@ def count_birds(formatted_message):
 			count_dict[field[1]] = tmp
 		
 	return count_dict
-
+```
+```python
 #graph counted birds
 def graph(counted_birds):
 	names = list(counted_birds.keys())
