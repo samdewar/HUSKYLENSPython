@@ -11,7 +11,7 @@ def on_message(client, userdata, msg):
         global message
         message = msg.payload
         client.disconnect()
-		print(message)
+	print(message)
 
     
 #logging
@@ -34,27 +34,27 @@ def on_connect(client, userdata, flags, rc):
 		 
 #
 def connect_and_subscribe(broker):
-		global connection
-		#Client(client_id="", clean_session=True, userdata=None, protocol=MQTTv311, transport="tcp")
-		client = mqtt.Client("lions_gate")
+	global connection
+	#Client(client_id="", clean_session=True, userdata=None, protocol=MQTTv311, transport="tcp")
+	client = mqtt.Client("lions_gate")
 		
-		#start coonection attempt
-		client.connect(broker, port=1883, keepalive=60)
-		connection = True
+	#start coonection attempt
+	client.connect(broker, port=1883, keepalive=60)
+	connection = True
 		
        
-		client.loop_start()        
+	client.loop_start()        
 
-		client.on_connect=on_connect #callback function
-		print("Connecting to ",broker)
-       
-		#Callback for displaying data
-		client.on_message=on_message
+	client.on_connect=on_connect #callback function
+	print("Connecting to ",broker)
+      
+	#Callback for displaying data
+	client.on_message=on_message
     
-		#Callback for displaying log data
-		client.on_log=on_log
+	#Callback for displaying log data
+	client.on_log=on_log
         
-		client.loop_forever()
+	client.loop_forever()
 
 #format data into array
 def format_data(unformatted_message):
