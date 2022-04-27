@@ -132,5 +132,51 @@ def on_message(client, userdata, msg):
 The payload is then formatted back into an array from a string.
 
 ```python
+#format data into array
+def format_data(unformatted_message):
+	counter = 0
+	formatted_message = []
+	unformatted_message = unformatted_message.split('[')
+	
+	#skip first two blank lines
+	for field in unformatted_message:
+		if counter != 2:
+			counter = counter + 1
+			continue
+		
+		#remove extras
+		field = field.replace("],","")
+		field = field.replace("]","")
+		field = field.replace("\'","")
+
+		#add tp array
+		formatted_message.append(field.split(","))
+		
+	return formatted_message
+```
+The instances are then counted and plotted into a bar chart
+
+```python
+#count birds and add to dictionary
+def count_birds(formatted_message):
+	count_dict = {}
+
+	for field in formatted_message:
+		if field[1] not in  count_dict:
+			count_dict[field[1]] = 1
+		else:
+			tmp = count_dict[field[1]] 
+			tmp = tmp + 1
+			count_dict[field[1]] = tmp
+		
+	return count_dict
+
+#graph counted birds
+def graph(counted_birds):
+	names = list(counted_birds.keys())
+	values = list(counted_birds.values())
+
+	plt.bar(range(len(counted_birds)), values, tick_label=names)
+	plt.show()
 
 ```
